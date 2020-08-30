@@ -16,6 +16,7 @@ firerect = fire.get_rect()
 heartrect = heart.get_rect()
 
 
+
 def recolour(list):
     for a in range(len(list)):
         list[a] = random.randint(0,255)

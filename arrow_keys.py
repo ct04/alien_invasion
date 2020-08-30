@@ -25,43 +25,39 @@ up = [0,-10]
 down = [0,10]
 left = [-10,0]
 right = [10,0]
+still = [0, 0]
 
 while True:
     for event in pygame.event.get():
-        if event.type == pygame.USEREVENT: sys.exit()
+        if event.type == pygame.QUIT: sys.exit()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                ghostrect.move_ip(up)
-            elif event.key == pygame.K_DOWN:
-                ghostrect.move_ip(down)
-            elif event.key == pygame.K_LEFT:
-                ghostrect.move_ip(left)
-            elif event.key == pygame.K_RIGHT:
-                ghostrect.move_ip(right)
+        if not ghostrect.top <= 0:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    ghostrect.move_ip(up)
+        if not ghostrect.bottom >= height:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_DOWN:
+                    ghostrect.move_ip(down)
+        if not ghostrect.left <= 0:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    ghostrect.move_ip(left)
+        if not ghostrect.right >= width:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    ghostrect.move_ip(right)
+    firerect.move_ip([random.randint(-300, 300), random.randint(-200, 200)])
 
-    # EVENT1 = firerect.move_ip([random.randint(-300, 300), random.randint(-200, 200)])
+    # EVENT1 = firerect.move_ip([random.randint(0, 600), random.randint(0, 400)])
     #
-    # pygame.time.set_timer(EVENT1, 100)
+    # pygame.time.set_timer(EVENT1, 1000)
 
-    if ghostrect.left < 0 or ghostrect.right > width:
-        recolour(colour)
-    if ghostrect.top < 0 or ghostrect.bottom > height:
-        recolour(colour)
 
-    # if ghostrect.left < 0:
-    #     if event.key == pygame.K_LEFT:
-    #         pygame.event.set_blocked(pygame.K_LEFT)
-    #         event.type == pygame.key
-    # if ghostrect.right > width:
-    #     if event.key == pygame.K_RIGHT:
-    #         ghostrect.move_ip([0, 0])
-    # if ghostrect.top < 0:
-    #     if event.key == pygame.K_UP:
-    #         ghostrect.move_ip([0, 0])
-    # if ghostrect.bottom > height:
-    #     if event.key == pygame.K_DOWN:
-    #         ghostrect.move_ip([0, 0])
+
+
+
+
 
     screen.fill(colour)
     screen.blit(ghost, ghostrect)
